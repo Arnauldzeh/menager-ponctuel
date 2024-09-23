@@ -1,0 +1,99 @@
+<mat-stepper [linear]="true" #stepper>
+  <mat-step>
+    <form class="form1">
+      <ng-template matStepLabel>Votre profil</ng-template>
+      <p class="my-4 font-bold text-center text-green-dark">Donnez vos informations de façon précise et appliquez vous à répondre à chaque question pour augmenter vos chances d'être contacté.</p>
+      <div class="flex flex-row flex-wrap justify-center w-9/12 gap-6 mx-auto">
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Name</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Votre nom" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Prénom</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Votre prénom" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Téléphone</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Téléphone" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Genre</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Genre" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Votre ville</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Votre ville" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Votre quartier</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Votre quartier" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label class="border-none outline-none">Domaine d'expertise ?</mat-label>
+          <input matInput class="border-none outline-none" placeholder="Plombier" required>
+        </mat-form-field>
+        <div class="text-center mat-form-field">
+          <p><mat-label class="border-none outline-none">Êtes-vous étudiant(e) ?</mat-label></p>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button class="mx-3" value="1">Option 1</mat-radio-button>
+            <mat-radio-button class="mx-3" value="2">Option 2</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <p class="text-left mat-form-field"><strong>2k</strong> par heure <mat-icon class="align-middle text-slate-custom" matTooltip="Lorem ipsum dolor sit amet">help</mat-icon></p>
+        <p class="text-left mat-form-field"></p>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="Vos horaires">
+    <p class="my-4 font-bold text-center text-green-dark">Donnez vos informations de façon précise et appliquez vous à répondre à chaque question pour augmenter vos chances d'être contacté.</p>
+    <div class="flex flex-row flex-wrap justify-center w-9/12 gap-6 mx-auto">
+      <form>
+        <div>
+          <p>Combien d'heures de travail par semaine etes vous pret a dispenser  ?*</p>
+          <mat-form-field>
+            <input matInput placeholder="1-10 heures" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <p>Quels jours seriez-vous disponible pour travailler ?*</p>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <mat-label>Mot de passe</mat-label>
+          <input matInput placeholder="Votre mot de passe" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirmation mot de passe</mat-label>
+          <input matInput placeholder="Confirmez votre mot de passe" required>
+        </mat-form-field>
+        <div>
+          <mat-checkbox><a routerLink="#">Accepter les termes et conditions</a></mat-checkbox>
+        </div>
+        <div>
+          <button (click)="$event.preventDefault(); $event.stopPropagation()" mat-button matStepperPrevious>Back</button>
+          <button (click)="$event.preventDefault(); $event.stopPropagation()" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </div> 
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div class="flex flex-row">
+      <img src="/assets/icons/done.png" alt="">
+      <div>
+        <h2>Bravo Inscription Reussie !</h2>
+        <p>Vous  disposer desormais de 7jours avant votre entretien <span class="text-green-dark">bonne chance</span></p>
+      </div>
+    </div>
+    <p>Le Menager Ponctuel est une plateforme en ligne qui met en relation des personnes occupées ayant besoin d'aide avec des prestataires de services locaux fiables, appelés "Ménage". En tant que Ménage, vous pouvez gagner de l'argent en faisant ce que vous aimez, quand et où vous le souhaitez, tout en rendant service à votre localité.</p>
+  </mat-step>
+
+</mat-stepper>
+
+<footer class="flex flex-row text-green-dark">
+  <div class="w-10/12 h-10 bg-green-dark"></div>
+  <p class="px-4 py-3 2/12"><button (click)="stepper.next();">Suivant ></button></p>
+</footer>

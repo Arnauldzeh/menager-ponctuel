@@ -1,0 +1,25 @@
+.banner{
+  background: url('/assets/images/Banner.png');
+  height: 368px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px;
+}
+
+.chart{
+  .card{
+    @apply p-4 mb-4 border-2 rounded-lg shadow-md;
+    h3{
+      @apply font-bold mb-4;
+      img{
+        @apply inline;
+      }
+    }
+  }
+}
+
+.engagement{
+  p{
+    @apply mb-6;
+  }
+}

@@ -1,0 +1,6 @@
+.form1{
+  mat-form-field, .mat-form-field{
+    @apply grow-0 shrink-0;
+    flex-basis: 40%;
+  }
+}
