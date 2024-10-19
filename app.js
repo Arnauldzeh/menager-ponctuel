@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // Routes
-const UsersRoutes = require("./Routes/users");
+const UsersRoutes = require("./server/Routes/users");
 // const TransactionsRoutes = require("./api/routes/transaction");
 
 // Database connection
