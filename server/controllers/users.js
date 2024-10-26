@@ -1,50 +1,66 @@
 const User = require("../Models/user");
 const { hashPassword, comparePassword } = require("../services/hash");
 const { generateToken } = require("../services/jwt");
-const { emailManager } = require("../services/mailing");
 
 const signup = async (req, res, next) => {
   try {
-    const { name, email, password, confirmPassword, balance } = req.body;
-
+    const {
+      nom,
+      prenom,
+      telephone,
+      genre,
+      ville,
+      quartier,
+      domaineTravail,
+      estEtudiant,
+      disponibilite,
+      motDePasse,
+    } = req.body;
+    const parsedDisponibilite = JSON.parse(disponibilite);
     // Validation
-    if (!name) throw new Error("Name is required");
-    if (!email) throw new Error("Email is required");
-    if (!password) throw new Error("Password is required");
-    if (password.length < 5)
+    if (!nom) throw new Error("Name is required");
+    if (!prenom) throw new Error("Surname is required");
+    if (!telephone) throw new Error("telephone number is required");
+    if (!genre) throw new Error("gender is required");
+    if (!ville) throw new Error("town is required");
+    if (!quartier) throw new Error("quarter is required");
+    if (!domaineTravail) throw new Error("domain of work is required");
+    if (!estEtudiant) throw new Error("This field is required");
+    if (!parsedDisponibilite) throw new Error("Availability is required");
+    if (!motDePasse) throw new Error("Password is required");
+
+    if (motDePasse.length < 5)
       throw new Error("Password must be at least 5 characters");
-    if (password !== confirmPassword) throw new Error("Passwords must match");
+    // if (motDePasse !== confirmPassword) throw new Error("Passwords must match");
 
-    // Check if email already exists
-    const existingEmail = await User.findOne({ email });
-    if (existingEmail) throw new Error("Use a different email");
+    const hashedPassword = await hashPassword(motDePasse);
 
-    // Hash the password
-    const hashedPassword = await hashPassword(password);
+    //codeMenager
+    const codeMenager = Math.floor(10000 + Math.random() * 90000);
 
     // Create new user
     const newUser = new User({
-      name,
-      email,
-      password: hashedPassword,
-      balance,
+      nom,
+      prenom,
+      telephone,
+      genre,
+      ville,
+      quartier,
+      domaineTravail,
+      estEtudiant,
+      disponibilite: parsedDisponibilite,
+      cniRecto: req.files["cniRecto"][0].path,
+      cniVerso: req.files["cniVerso"][0].path,
+      motDePasse: hashedPassword,
+      codeMenager: codeMenager,
     });
 
     // Save the user to the database
     await newUser.save();
 
-    // Log the user data (optional)
     console.log(newUser);
     const token = generateToken(newUser);
 
-    //Send email
-    await emailManager(
-      newUser.email,
-      "Welcome to expense tracker. We hope you can tracker your expenses easily from our platform",
-      "html",
-      "Welcome to expense tracker app"
-    );
-    // Send success response
     res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     next(error);
@@ -53,20 +69,20 @@ const signup = async (req, res, next) => {
 
 const signin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { codeMenager, motDePasse } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ codeMenager });
     if (!user) {
       return res
         .status(401)
         .json({ message: "Authentication failed, Wrong email or password" });
     }
 
-    const isMatch = await comparePassword(password, user.password);
+    const isMatch = await comparePassword(motDePasse, user.motDePasse);
     if (!isMatch) {
       return res
         .status(401)
-        .json({ message: "Authentication failed, Wrong email or password" });
+        .json({ message: "Authentication failed, Wrong credentials" });
     }
 
     const token = generateToken(user);
