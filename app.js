@@ -2,25 +2,14 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const connectDB = require("./server/config/db");
 
 // Routes
 const UsersRoutes = require("./server/Routes/users");
 // const TransactionsRoutes = require("./api/routes/transaction");
 
 // Database connection
-mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Database connected successfully!!!");
-  })
-  .catch(() => {
-    console.log("Database connection failed!");
-  });
-mongoose.Promise = global.Promise;
+connectDB();
 
 // Serve files from the 'uploads' directory
 app.use("/uploads", express.static("uploads"));
