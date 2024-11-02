@@ -1,60 +1,59 @@
-<div class="container grid grid-cols-2">
-  <form class="col-1">
-    <header><img src="/assets/images/logo.png" alt="Logo" loading="lazy"></header>
-    <h2>Connectew vous à votre compte</h2>
-    <h3>Votre espace pro</h3>
-    <p>
-      <mat-label class="block">Numero de téléphone</mat-label>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>phone</mat-icon>
-        <mat-error>Numero de téléphone invalide</mat-error>
+<div class="container flex flex-row items-center justify-center gap-16 p-5 mx-auto">
+  <form class="flex-1">
+    <header><img class="size-24" src="/assets/images/logo.png" alt="Logo" loading="lazy"></header>
+    <h2 class="my-4 text-2xl font-bold text-center text-green-dark">Connectez vous à votre compte</h2>
+    <h3 class="mb-10 font-bold text-center text-slate-custom">Votre espace pro</h3>
+    <p class="mb-4">
+      <mat-label class="block">Code ménager</mat-label>
+      <mat-form-field class="w-full" appearance="outline">
+        <input matInput placeholder="">
+        <mat-error>Code invalide</mat-error>
       </mat-form-field>
     </p>
-    <p>
+    <p class="mb-4">
       <mat-label class="block">Mot de passe</mat-label>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Placeholder">
+      <mat-form-field class="w-full" appearance="outline">
+        <input matInput placeholder="">
         <mat-icon matSuffix>key</mat-icon>
-        <mat-error>Moy de passe invalide</mat-error>
+        <mat-error>Mot de passe invalide</mat-error>
       </mat-form-field>
     </p>
-    <div>
-      <mat-checkbox>Rester connecté(e)</mat-checkbox>
-      <span><a routerLink="./">Mot de passe oublié ?</a></span>
+    <div class="flex flex-row items-center justify-between mb-5">
+      <mat-checkbox class="relative right-2.5">Rester connecté(e)</mat-checkbox>
+      <span><a class="text-blue-custom" routerLink="./">Mot de passe oublié ?</a></span>
     </div>
-    <p>Pas encore de compte ?</p>
-    <p><button mat-raised-button>Je me connecte</button></p>
+    <p class="mb-5"><a>Pas encore de compte ?</a></p>
+    <p><button class="w-full h-12 mb-5 font-semibold rounded-lg bg-green-dark text-white-custom">Je me connecte</button></p>
     <p><img src="/assets/images/OM.png" alt="OM" loading="lazy"></p>
   </form>
-  <section class="col-2">
-    
-    <div class="grid grid-cols-5 grid-rows-5 border-4">
-      <div class="col-span-4 row-span-2">
-        <h1>BIENVENUE</h1>
-        <p>Bienvenue sur votre espace pro Ménager Ponctuelle ! Gérez votre activité et trouvez de nouveaux clients en toute simplicité.</p>
+  
+  <section>
+    <div class="grid grid-cols-5 grid-rows-5">
+      <div class="col-span-4 row-span-2 pt-10 pb-4 px-7 rounded-t-xl rounded-br-xl">
+        <h1 class="mb-4 text-4xl font-bold">BIENVENUE</h1>
+        <p class="mb-2">Bienvenue sur votre espace pro Ménager Ponctuelle ! Gérez votre activité et trouvez de nouveaux clients en toute simplicité.</p>
         <p>Travaillez quand vous voulez et où vous voulez avec notre application d'aide à domicile.</p>
       </div>
-      <div class="col-span-2 col-start-1 row-span-2 row-start-4">
-        <img src="/assets/images/plumbing.png" alt="">
+      <div class="col-span-2 col-start-1 row-span-2 row-start-4 mt-6 overflow-hidden rounded-xl">
+        <img class="w-full h-full" src="/assets/images/plumbing.png" alt="">
       </div>
-      <div class="col-span-2 col-start-1 row-start-3 mr-4">
-        <img src="/assets/icons/verification-badge.png" alt="">
+      <div class="flex flex-row items-center col-span-2 col-start-1 row-start-3 mr-9 rounded-b-xl">
+        <img class="w-1/4 mx-auto" src="/assets/icons/verification-badge.png" alt="">
       </div>
-      <div class="col-span-2 col-start-3 row-span-2 row-start-3 mt-4 mb-3 ml-4">
-        <img src="/assets/images/rectange-45.png" alt="">
+      <div class="col-span-2 col-start-3 row-span-2 row-start-3 mb-6 ml-3 overflow-hidden mt-9 rounded-xl">
+        <img class="w-full h-full" src="/assets/images/dishes.png" alt="">
       </div>
-      <div class="col-span-2 col-start-3 row-start-5 ml-4">
+      <div class="flex flex-row items-center col-span-2 col-start-3 row-start-5 ml-4 font-bold rounded-xl justify-evenly">
         <div>
-          <img src="/assets/icons/3K.png" alt="">
+          <img class="mx-auto" src="/assets/icons/3K.png" alt="">
           <p>Utilisateurs</p>
         </div>
         <div>
-          <img src="/assets/icons/security.png" alt="">
+          <img class="mx-auto" src="/assets/icons/security.png" alt="">
           <p>Sécurisé</p>
         </div>
         <div class="bg-green-dark">
-          <img src="/assets/icons/time.png" alt="">
+          <img class="mx-auto" src="/assets/icons/time.png" alt="">
           <p>7j/7 | H24</p>
         </div>
       </div>

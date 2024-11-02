@@ -1,44 +1,48 @@
-<div class="container p-4 mx-auto text-xl">
-  <header class="px-4 mb-12">
+<div class="p-4 mx-auto text-xl">
+  <header class="px-4 mb-12 c">
     <app-header-toolbar></app-header-toolbar>
     <div class="flex mt-8 gap-7">
-      <div class="flex flex-col justify-between flex-1 pt-2 pb-5 pr-6">
+      <div class="flex flex-col justify-center flex-1 pt-2 pb-5 pr-6">
         <h1 class="mb-6 text-5xl font-bold capitalize">Aide de confiance pour les tâches ménagères</h1>
         <p class="relative top-1">Trouvez des professionnels de confiance pour vos travaux à domicile dans tous sangmelima.</p>
         <div class="flex items-center mt-5">
-          <input type="text" class="block w-4/6 px-3 mr-2 transition-all duration-300 border border-gray-400 rounded h-9 hover:ring-1 focus:ring-1 active:ring-1 focus:outline-none placeholder:text-sm placeholder:relative placeholder:bottom-0.5" placeholder="Rechercher un service">
-          <button class="justify-center w-1/6 rounded-md shadow h-9 bg-green-dark text-white-custom"><mat-icon class="m-auto align-middle">search</mat-icon></button>
+          <input type="text" class="block w-4/6 px-3 mr-2 transition-all duration-300 border border-gray-400 rounded h-9 hover:ring-1 focus:ring-green-dark hover:ring-green-dark focus:ring-1 active:ring-1 focus:outline-none placeholder:text-sm placeholder:relative placeholder:bottom-0.5 focus:scale-[1.015]" placeholder="Rechercher un service">
+          <button matRipple class="justify-center w-1/6 transition-all duration-300 rounded-md shadow h-9 bg-green-dark text-white-custom active:opacity-85 active:scale-105"><mat-icon class="m-auto align-middle">search</mat-icon></button>
         </div>
       </div>
       <div class="flex flex-wrap justify-between flex-1 gap-1">
-        <div *ngFor="let card of headerCards" class="flex items-center mb-2 border border-gray-400 rounded grow-0 shrink-0 header-item">
+        <div matRipple *ngFor="let card of headerCards" class="flex items-center mb-2 transition-all duration-300 border border-gray-400 rounded grow-0 shrink-0 header-item hover:scale-105">
           <div class="flex flex-col items-center justify-center w-1/4 h-full text-center">
             <img class="mx-auto size-5" [src]="card.icon" alt="">
             <p class="text-xs">{{card.label}}</p>
           </div>
-          <div class="w-3/4 h-full" [ngStyle]="{'backgcround': 'url('+card.img+')'}">
-            <img [src]="card.img" alt="" loading="lazy">
+          <div class="w-3/4 h-full group group-hover:bg-green-dark" [ngStyle]="{'backgcround': 'url('+card.img+')'}">
+            <img class="group-hover:opacity-90 group-hover:contrast-50 w-full h-full transition-all duration-300 group-hover:duration-300 group-hover:blur-[1.5px] group-hover:transition-all" [src]="card.img" alt="" loading="lazy">
+            <p class="absolute font-bold text-center transition-all duration-300 opacity-0 bottom-16 left-36 group-hover:duration-300 group-hover:opacity-100 text-white-custom">{{ card.workers }}<sup>+</sup> <br> Prestataires</p>
+            <mat-icon class="relative z-10 -ml-8 -right-full text-white-custom bottom-1/2">keyboard_arrow_right</mat-icon>
           </div>
         </div>
       </div>
     </div>
   </header>
-  <section class="px-4 mb-16">
+  <section class="px-4 mb-16 c">
     <p class="font-bold">Le moyen simple et fiable de prendre soin de votre environnement.</p>
     <div class="mt-12">
       <div class="flex flex-row justify-center w-7/12 gap-10 px-4 pb-3 mx-auto mb-4 border-b-2">
-        <div *ngFor="let service of services" class="text-center">
-          <img class="mx-auto" [src]="service.img" alt="">
-          <p class="mt-2 text-sm">{{service.title}}</p>
+        <div class="text-center hover:cursor-pointer hover:scale-110 {{ selectedService===i ? 'scale-110' : 'scale-100'}} group transition-all bg-white hover:duration-300 bg-[url('/assets/images/Ellipse1.png')] bg-no-repeat bg-contain duration-300" *ngFor="let service of services; let i=index" (click)="onSelectService(i)">
+          <div class="transition-all duration-300 {{ selectedService===i ? 'bg-opacity-0' : 'bg-opacity-100'}} bg-white group-hover:bg-opacity-0">
+            <img class="mx-auto" [src]="service.img" alt="">
+            <p class="mt-2 text-sm transition-all duration-300 group-hover:underline group-hover:underline-offset-[10px] group-hover:decoration-4 group-hover:text-green-dark group-hover:font-semibold {{ selectedService===i ? 'text-green-dark font-semibold underline underline-offset-[10px] decoration-4' : 'no-underline underline-offset-4 decoration-0'}}">{{service.title}}</p>
+          </div>
         </div>
       </div>
-      <div class="flex flex-row flex-wrap justify-start w-7/12 gap-4 px-2 mx-auto">
-        <span class="inline-block px-4 py-2 text-sm border-2 rounded-md w-fit border-green-light" *ngFor="let subService of services[selectedService].subCategories">{{ subService }}</span>
+      <div class="flex flex-row flex-wrap justify-start w-7/12 gap-4 px-2 mx-auto mt-4">
+        <span matRipple class="inline-block px-4 py-2 text-sm transition-all duration-300 rounded-md cursor-default hover:scale-105 hover:duration-300 hover:bg-green-dark hover:bg-opacity-35 hover:border-green-400 hover:border-1 w-fit {{ selectedSubService===i ? 'bg-green-dark scale-105 border-green-400 border-2 bg-opacity-35' : 'border-2 border-green-light'}}" *ngFor="let subService of services[selectedService].subCategories; let i=index" (click)="onSelectSubService(i)">{{ subService }}</span>
       </div>
       <p class="w-10/12 text-sm text-right"><a href="#" class="text-blue-custom">Voir plus ></a></p>
-      <div class="flex flex-row justify-center mx-auto mt-5 gap-7">
-        <div class="border-2 rounded shadow-lg" *ngFor="let i of [0, 1, 2]">
-          <img src="/assets/images/dishes.png" alt="">
+      <div class="flex flex-row justify-center mx-auto mt-5 gap-7 {{animate ? 'animate-pulse' : ''}}">
+        <div matRipple class="transition-all duration-300 border-2 rounded shadow-md hover:duration-300 hover:scale-105 hover:shadow-2xl" *ngFor="let i of [0, 1, 2]">
+          <img class="transition-all duration-300 contrast-[0.85] hover:contrast-100 hover:duration-300" src="/assets/images/dishes.png" alt="">
           <div class="p-3 text-sm text-center">
             <p>Nettoyage à domicile</p>
             <p>A partir de <span class="font-bold">5000FCFA</span></p>
@@ -47,33 +51,35 @@
       </div>
     </div>
   </section>
-  <section class="flex flex-row items-center gap-20 px-4 py-12 bg-white-custom">
-    <div class="py-5">
-      <h3 class="mb-3 font-bold">Processus de vérification</h3>
-      <h2 class="mb-6 text-5xl font-bold">Professionnels de confiance, garantis</h2>
-      <p class="text-lg">Notre processus de vérification rigoureux garantit que chaque prestataire de services est vérifé, assuré et qualifié pour fournir des prestations exceptionnelles.</p>
-    </div>
-    <div class="flex flex-col gap-8">
-      <div>
-        <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/vetted.png" alt=""> Vetted Professionals</h4>
-        <p class="text-sm">Notre équipe examine et vérifie minitieusement tous les prestataires de services pour garantir un travail de qualité supérieure.</p>
+  <section class="bg-white-custom">
+    <div class="flex flex-row items-center gap-20 px-6 py-12 c">
+      <div class="py-5">
+        <h3 class="mb-3 font-bold">Processus de vérification</h3>
+        <h2 class="mb-6 text-5xl font-bold">Professionnels de confiance, garantis</h2>
+        <p class="text-lg">Notre processus de vérification rigoureux garantit que chaque prestataire de services est vérifé, assuré et qualifié pour fournir des prestations exceptionnelles.</p>
       </div>
-      <div>
-        <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/calendar.png" alt=""> Planification flexible</h4>
-        <p class="text-sm">Réservez des services à votre concenance, avec des options de planification flexibles adaptés à votre style de vie occupé.</p>
-      </div>
-      <div>
-        <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/secure.png" alt=""> Paiements sécurisés</h4>
-        <p class="text-sm">Notre plateforme offre un traitement de paiement sécurisé, afin que vous puissiez réserver en toute confiance.</p>
+      <div class="flex flex-col gap-8">
+        <div>
+          <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/vetted.png" alt=""> Vetted Professionals</h4>
+          <p class="text-sm">Notre équipe examine et vérifie minitieusement tous les prestataires de services pour garantir un travail de qualité supérieure.</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/calendar.png" alt=""> Planification flexible</h4>
+          <p class="text-sm ">Réservez des services à votre concenance, avec des options de planification flexibles adaptés à votre style de vie occupé.</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-bold"><img class="inline" src="/assets/icons/secure.png" alt=""> Paiements sécurisés</h4>
+          <p class="text-sm">Notre plateforme offre un traitement de paiement sécurisé, afin que vous puissiez réserver en toute confiance.</p>
+        </div>
       </div>
     </div>
   </section>
-  <section class="py-12 mb-5">
+  <section class="py-12 mb-5 c">
     <h2 class="mb-8 text-5xl font-bold text-center">Ce que nos clients disent</h2>
     <p class="font-semibold text-center text-gray-700">Ecoutez de vraies personnes qui ont utilisés nos services et ont adoré l'expérience.</p>
     <div class="flex flex-row flex-wrap justify-center gap-10 mt-12">
-      <div class="p-4 rounded-sm shadow-md grow-0 shrink-0 basis-1/4 min-w-64 testimonial" *ngFor="let testimonial of testimonials">
-        <div class="flex flex-row mb-4">
+      <div class="p-4 transition-all duration-300 rounded-sm shadow-md hover:scale-105 hover:shadow-xl hover:duration-300 grow-0 shrink-0 basis-1/4 min-w-64 testimonial" *ngFor="let testimonial of testimonials">
+        <div class="flex flex-row items-center gap-3 mb-4">
           <img class="inline-block size-12" src="/assets/icons/user.png" alt="">
           <div>
             <h3 class="font-bold ">{{ testimonial.author.toString() |titlecase}}</h3>
@@ -85,7 +91,7 @@
     </div>
   </section>
   
-  <footer>
+  <footer class="mb-5 c">
     <app-footer></app-footer>
   </footer>
 </div>

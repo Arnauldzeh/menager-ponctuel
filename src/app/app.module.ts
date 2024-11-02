@@ -20,6 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRippleModule } from '@angular/material/core';
+
 
 import { ApplicationComponent } from './pages/application/application.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,7 +52,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatStepperModule,
     MatRadioModule,
+    MatChipsModule,
     MatTooltipModule,
+    MatSelectModule,
+    MatRippleModule,
     MatIconModule,
   ],
   providers: [
